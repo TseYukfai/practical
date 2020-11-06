@@ -29,6 +29,11 @@ data = np.genfromtxt(data_filename,delimiter = ',')
 x_values = data[:,0]
 y_values = data[:,1]
 
+# 运行出错就加上
+import statsmodels.api as sm
+data[np.isnan(data)] = 0
+data[np.isinf(data)] = 0
+
 # These lines perform the regression procedure:
 X_values = sms.add_constant(x_values)
 regression_model_a = sms.OLS(y_values, X_values)
